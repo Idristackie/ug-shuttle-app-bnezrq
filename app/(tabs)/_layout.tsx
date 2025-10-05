@@ -1,8 +1,10 @@
+
 import React from 'react';
 import { Platform } from 'react-native';
 import { NativeTabs, Icon, Label } from 'expo-router/unstable-native-tabs';
 import { Stack } from 'expo-router';
 import FloatingTabBar, { TabBarItem } from '@/components/FloatingTabBar';
+import { colors } from '@/styles/commonStyles';
 
 export default function TabLayout() {
   // Define the tabs configuration
@@ -12,6 +14,18 @@ export default function TabLayout() {
       route: '/(tabs)/(home)/',
       icon: 'house.fill',
       label: 'Home',
+    },
+    {
+      name: 'search',
+      route: '/(tabs)/search',
+      icon: 'magnifyingglass',
+      label: 'Search',
+    },
+    {
+      name: 'route',
+      route: '/(tabs)/route',
+      icon: 'map.fill',
+      label: 'Routes',
     },
     {
       name: 'profile',
@@ -29,6 +43,14 @@ export default function TabLayout() {
           <Icon sf="house.fill" drawable="ic_home" />
           <Label>Home</Label>
         </NativeTabs.Trigger>
+        <NativeTabs.Trigger name="search">
+          <Icon sf="magnifyingglass" drawable="ic_search" />
+          <Label>Search</Label>
+        </NativeTabs.Trigger>
+        <NativeTabs.Trigger name="route">
+          <Icon sf="map.fill" drawable="ic_map" />
+          <Label>Routes</Label>
+        </NativeTabs.Trigger>
         <NativeTabs.Trigger name="profile">
           <Icon sf="person.fill" drawable="ic_profile" />
           <Label>Profile</Label>
@@ -43,10 +65,12 @@ export default function TabLayout() {
       <Stack
         screenOptions={{
           headerShown: false,
-          animation: 'none', // Remove fade animation to prevent black screen flash
+          animation: 'none',
         }}
       >
         <Stack.Screen name="(home)" />
+        <Stack.Screen name="search" />
+        <Stack.Screen name="route" />
         <Stack.Screen name="profile" />
       </Stack>
       <FloatingTabBar tabs={tabs} />
